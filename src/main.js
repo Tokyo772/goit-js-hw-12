@@ -105,13 +105,13 @@ async function handlerLoadMore() {
   } catch (error) {
     iziToast.show({
       ...iziRejectOptions,
-      message: 'Failed to load more images. Please try again!',
+      message: "We're sorry, but you've reached the end of search results.",
     });
   } finally {
     hideLoader();
   }
-
-  if (page === 33) {
+  const totalPage = Math.floor(data.totalHits / 15);
+  if (page === totalPage) {
     elements.btnLoadMore.classList.replace(
       'btn-load-more',
       'btn-hidden-load-more'
