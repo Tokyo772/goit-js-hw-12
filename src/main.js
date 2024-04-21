@@ -52,7 +52,7 @@ async function handlerSearch(evt) {
   }
 
   currentSearch = userSearch;
-  page = 32;
+  page = 1;
 
   showLoader();
 
@@ -74,7 +74,6 @@ async function handlerSearch(evt) {
       'btn-hidden-load-more',
       'btn-load-more'
     );
-    console.log(page);
   } catch {
     elements.list.innerHTML = '';
     iziToast.show({
