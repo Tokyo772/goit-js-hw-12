@@ -102,6 +102,14 @@ async function handlerLoadMore() {
       'btn-hidden-load-more',
       'btn-load-more'
     );
+
+    const { height: cardHeight } =
+      elements.list.firstElementChild.getBoundingClientRect();
+
+    window.scrollBy({
+      top: cardHeight * 3,
+      behavior: 'smooth',
+    });
   } catch (error) {
     iziToast.show({
       ...iziRejectOptions,
