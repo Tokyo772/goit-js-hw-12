@@ -35,7 +35,7 @@ function hideLoader() {
 
 hideLoader();
 
-function handlerSearch(evt) {
+async function handlerSearch(evt) {
   evt.preventDefault();
   const userSearch = elements.form.elements.search.value.trim();
   if (userSearch === '') {
@@ -48,25 +48,28 @@ function handlerSearch(evt) {
 
   showLoader();
 
-  serviceImage(userSearch)
-    .then(data => {
-      if (data.hits.length === 0) {
-        throw new Error('error');
-      }
+  try {
+    const data = await serviceImage(userSearch);
 
-      elements.list.innerHTML = createMarkup(data.hits);
-      lightbox.refresh();
-    })
-    .catch(err => {
+    if (data.hits.length === 0) {
       elements.list.innerHTML = '';
       iziToast.show({
         ...iziRejectOptions,
         message: `Sorry, there are no images matching your search query. Please try again!`,
       });
-    })
-    .finally(() => {
-      hideLoader();
+      return;
+    }
+    elements.list.innerHTML = createMarkup(data.hits);
+    lightbox.refresh();
+  } catch {
+    elements.list.innerHTML = '';
+    iziToast.show({
+      ...iziRejectOptions,
+      message: `Sorry, there are no images matching your search query. Please try again!`,
     });
+  } finally {
+    hideLoader();
+  }
 }
 
 const lightbox = new SimpleLightbox('.js-list a', {
