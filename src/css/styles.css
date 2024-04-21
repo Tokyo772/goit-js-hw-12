@@ -181,3 +181,11 @@
 .sl-wrapper .sl-navigation button {
   color: #fff !important;
 }
+
+.btn-hidden-load-more {
+  display: none;
+}
+
+.btn-load-more {
+  display: inline-block;
+}
