@@ -11,7 +11,8 @@ async function serviceImage(userSearch) {
     safesearch: 'true',
   });
 
-  return await axios.get(`${BASE_URL}?${params}`);
+  const response = await axios.get(`${BASE_URL}?${params}`);
+  return response.data;
 }
 
 export { serviceImage };
