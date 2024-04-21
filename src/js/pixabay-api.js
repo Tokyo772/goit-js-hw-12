@@ -1,4 +1,6 @@
-function serviceImage(userSearch) {
+import axios from 'axios';
+
+async function serviceImage(userSearch) {
   const BASE_URL = 'https://pixabay.com/api/';
 
   const params = new URLSearchParams({
@@ -9,12 +11,7 @@ function serviceImage(userSearch) {
     safesearch: 'true',
   });
 
-  return fetch(`${BASE_URL}?${params}`).then(resp => {
-    if (!resp.ok) {
-      throw new Error(resp.statusText);
-    }
-    return resp.json();
-  });
+  return await axios.get(`${BASE_URL}?${params}`);
 }
 
 export { serviceImage };
