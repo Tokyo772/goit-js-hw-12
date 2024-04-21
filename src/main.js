@@ -65,7 +65,10 @@ async function handlerSearch(evt) {
         ...iziRejectOptions,
         message: `Sorry, there are no images matching your search query. Please try again!`,
       });
-
+      elements.btnLoadMore.classList.replace(
+        'btn-load-more',
+        'btn-hidden-load-more'
+      );
       return;
     }
     elements.list.innerHTML = createMarkup(data.hits);

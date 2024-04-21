@@ -17,8 +17,6 @@
 }
 
 .loader {
-  margin-left: 550px;
-
   width: 48px;
   height: 48px;
   border: 5px solid #fff;
@@ -40,6 +38,7 @@
 
 .container {
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
   padding-top: 36px;
@@ -189,5 +188,19 @@
 }
 
 .btn-load-more {
-  display: inline-block;
+  margin-top: 10px;
+
+  width: 200px;
+  padding: 8px 16px;
+
+  border-radius: 8px;
+  background-color: #4e75ff;
+  border: none;
+
+  color: #fff;
+  font-weight: 500;
+  line-height: 1.5em;
+  letter-spacing: 0.64px;
+
+  transition: background-color 300ms ease-in-out;
 }
