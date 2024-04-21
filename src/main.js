@@ -90,12 +90,20 @@ async function handlerSearch(evt) {
 
 async function handlerLoadMore() {
   showLoader();
+  elements.btnLoadMore.classList.replace(
+    'btn-load-more',
+    'btn-hidden-load-more'
+  );
 
   try {
     page += 1;
     const data = await serviceImage(currentSearch, page);
     elements.list.insertAdjacentHTML('beforeend', createMarkup(data.hits));
     lightbox.refresh();
+    elements.btnLoadMore.classList.replace(
+      'btn-hidden-load-more',
+      'btn-load-more'
+    );
   } catch (error) {
     iziToast.show({
       ...iziRejectOptions,
