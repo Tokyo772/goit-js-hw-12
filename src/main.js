@@ -52,7 +52,7 @@ async function handlerSearch(evt) {
   }
 
   currentSearch = userSearch;
-  page = 1;
+  page = 32;
 
   showLoader();
 
@@ -65,10 +65,7 @@ async function handlerSearch(evt) {
         ...iziRejectOptions,
         message: `Sorry, there are no images matching your search query. Please try again!`,
       });
-      elements.btnLoadMore.classList.replace(
-        'btn-load-more',
-        'btn-hidden-load-more'
-      );
+
       return;
     }
     elements.list.innerHTML = createMarkup(data.hits);
@@ -77,6 +74,7 @@ async function handlerSearch(evt) {
       'btn-hidden-load-more',
       'btn-load-more'
     );
+    console.log(page);
   } catch {
     elements.list.innerHTML = '';
     iziToast.show({
@@ -111,6 +109,13 @@ async function handlerLoadMore() {
     });
   } finally {
     hideLoader();
+  }
+
+  if (page === 33) {
+    elements.btnLoadMore.classList.replace(
+      'btn-load-more',
+      'btn-hidden-load-more'
+    );
   }
 }
 
